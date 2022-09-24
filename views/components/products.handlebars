@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row justify-content-center">
+    {{#each productos}}
+      <div class="card" style="width: 18rem;">
+        <img src="{{this.url_image}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{this.name}}</h5>
+          <p class="card-text">Precio: {{this.price}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
