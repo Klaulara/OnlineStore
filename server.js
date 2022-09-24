@@ -32,8 +32,15 @@ app.get('/', async(req, res) => {
 
 app.get('/categoria', async (req, res)=> {
     const id = Object.values(req.query);
+    const verifyId = async(id) => {
+        if (id == '0') {
+            return await traerProductos();
+        } else {
+            return await traerProductoPorCategoria(id);
+        }
+    }
     try {
-        const productos = await traerProductoPorCategoria(id);
+        const productos = await verifyId(id);
         const categorias = await traerCategorias();
         res.render('index', {productos, categorias});
     } catch (error) {
