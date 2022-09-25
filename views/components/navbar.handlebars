@@ -1,20 +1,36 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<nav
+  class="navbar fixed-top navbar-expand-lg navbar-light bg-light flex-wrap justify-content-between"
+>
   <div class="container">
-    <a class="navbar-brand" href="#">Bsale</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand mx-5 " href="#">
+      <img src="/img/EmbeddedImage.png">
+    </a>
+    <form class="d-flex ms-5" action="/categoria" method="GET">
+      <select
+        class="form-select me-2"
+        aria-label="Default select example"
+        name="categoria"
+      >
+        <option value="0" selected>Categorias</option>
+        {{#each categorias}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+      <button class="btn btn-outline-success" type="submit">Filtrar</button>
+    </form>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
-      <form class="d-flex" action="/categoria" method="GET">
-        <select class="form-select" aria-label="Default select example" name="categoria">
-          <option value="0" selected>Categorias</option>
-          {{#each categorias}}
-          <option value="{{this.id}}">{{this.name}}</option>
-          {{/each}}
-        </select>
-        <button class="btn btn-outline-success" type="submit">Filtrar</button>
-      </form>
+
     </div>
   </div>
 </nav>

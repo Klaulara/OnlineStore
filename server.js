@@ -5,6 +5,7 @@ const port = 3000;
 const { traerCategorias, traerProductos, traerProductoPorCategoria } = require('./consultas');
 
 app.use(express.json());
+app.use(express.static(__dirname + '/assets'));
 
 app.engine(
     "handlebars",

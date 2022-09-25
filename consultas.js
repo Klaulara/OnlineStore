@@ -34,4 +34,8 @@ const traerProductoPorCategoria = async (id) => {
   }
 };
 
-module.exports = { traerCategorias, traerProductos, traerProductoPorCategoria };
+module.exports = { 
+  traerCategorias, 
+  traerProductos, 
+  traerProductoPorCategoria 
+};
