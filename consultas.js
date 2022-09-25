@@ -25,8 +25,9 @@ const traerProductos = async () => {
   }
 };
 
-const traerProductoPorCategoria = async (id) => {
-  const result = await pool.query(`SELECT * FROM product WHERE category=${id}`);
+const traerProductoPorCategoriayOrden = async (categoria, orden) => {
+  let ordenado = ordenSwitch(orden);
+  const result = await pool.query(`SELECT * FROM product WHERE category=${categoria} ORDER BY ${ordenado}`);
   try {
     return result[0];
   } catch (error) {
@@ -34,8 +35,47 @@ const traerProductoPorCategoria = async (id) => {
   }
 };
 
+const traerProductosOrdenados = async (orden) => {
+  let ordenado = ordenSwitch(orden);
+  const result = await pool.query(`SELECT * FROM product ORDER BY ${ordenado}`);
+  try {
+    return result[0];
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const traerProductoPorCategoria = async (categoria) => {
+  const result = await pool.query(`SELECT * FROM product WHERE category=${categoria}`);
+  try {
+    return result[0];
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const ordenSwitch = (orden) => {
+  switch (orden) {
+    case "1":
+      orden = "price";
+      break;
+    case "2":
+      orden = "price DESC";
+      break;
+    case "3":
+      orden = "name"; 
+      break;
+    case "4":
+      orden = "name DESC";
+      break;
+  }
+  return orden;
+}
+
 module.exports = { 
   traerCategorias, 
   traerProductos, 
-  traerProductoPorCategoria 
+  traerProductoPorCategoriayOrden,
+  traerProductosOrdenados,
+  traerProductoPorCategoria
 };
